@@ -5,15 +5,7 @@ meta:
 layout: component
 ---
 
-```html:preview
-<wa-button>Button</wa-button>
-```
-
-```jsx:react
-import WaButton from '@shoelace-style/shoelace/dist/react/button';
-
-const App = () => <WaButton>Button</WaButton>;
-```
+Yoooo
 
 ## Examples
 
