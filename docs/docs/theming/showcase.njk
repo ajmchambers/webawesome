@@ -1,0 +1,88 @@
+---
+layout: blank
+unlisted: true
+forceTheme: default
+---
+
+{% set themes = ['default', 'shoelace', 'awesome', 'active', 'brutalist', 'glossy', 'matter', 'mellow', 'playful', 'premium', 'tailspin'] %}
+
+<link rel="stylesheet" href="/docs/themes/showcase.css" />
+
+<style>
+  wa-radio-group[name='themes'] wa-radio {
+    --wa-form-control-activated-color: var(--wa-color-neutral-border-loud);
+    border: 0.0625rem solid var(--wa-color-surface-border);
+    border-radius: 0.5rem;
+    padding: var(--wa-space-m);
+
+    &:state(checked) {
+      border-color: var(--wa-form-control-activated-color);
+      box-shadow: inset 0 0 0 0.125rem var(--wa-form-control-activated-color);
+    }
+  }
+</style>
+
+<wa-radio-group name="themes" value="default" orientation="horizontal"> 
+  <wa-carousel navigation slides-per-page="6" slides-per-move="3">
+    {% for theme in themes %}
+      <wa-carousel-item>
+        <wa-radio value="{{ theme }}">
+          <wa-scoped>
+            <template>
+              <link rel="stylesheet" href="/dist/styles/utilities.css">
+              <link rel="stylesheet" href="/dist/styles/themes/{{ theme }}.css">
+              <style>
+                .swatches {
+                  border: 1px solid var(--wa-color-surface-border);
+                  border-radius: var(--wa-border-radius-s);
+                  display: flex;
+                  gap: 0;
+                  overflow: hidden;
+                  & > * {
+                    aspect-ratio: 1;
+                    width: 1.5rem;
+                  }
+                }
+                .label {
+                  font-family: var(--wa-font-family-heading);
+                  font-weight: var(--wa-font-weight-heading);
+                }
+              </style>
+
+              <div class="wa-stack wa-gap-xs">
+                  <span class="label">{{ theme | capitalize }}</span>
+                  <div class="swatches">
+                    <div class="swatch" style="background-color: var(--wa-color-surface-default)"></div>
+                    <div class="swatch" style="background-color: var(--wa-color-surface-lowered)"></div>
+                    <div class="swatch" style="background-color: var(--wa-color-text-normal)"></div>
+                    <div class="swatch" style="background-color: var(--wa-color-brand-fill-loud)"></div>
+                  </div>
+              </div>
+            </template>
+          </wa-scoped>
+        </wa-radio>
+      </wa-carousel-item>
+    {% endfor %}
+  </wa-carousel>
+</wa-radio-group>
+
+<wa-comparison style="width: 100%; height: 100%;" position="90">
+  <div slot="after" class="theme-showcase wa-gap-0">
+    {% include 'theme-showcase.njk' %}
+  </div>
+  <div slot="before" class="theme-showcase wa-gap-0 wa-invert">
+    {% include 'theme-showcase.njk' %}
+  </div>
+</wa-comparison>
+
+<script>
+const themeStylesheet = document.getElementById('theme-stylesheet');
+const themeSelect = document.querySelector('[name="themes"]');
+
+  themeSelect.addEventListener('change', event => {
+    const theme = event.target.value;
+
+    themeStylesheet.href = `/dist/styles/themes/${theme}.css`
+  });
+
+</script>
