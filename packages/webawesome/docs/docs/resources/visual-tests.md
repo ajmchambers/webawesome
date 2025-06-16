@@ -39,6 +39,7 @@ These tests can come in handy when creating or customizing your own theme. Look 
   <wa-tab panel="size">Size</wa-tab>
   <wa-tab panel="alignment">Alignment</wa-tab>
   <wa-tab panel="harmony">Harmony</wa-tab>
+  <wa-tab panel="nesting">Nesting</wa-tab>
 
 <wa-tab-panel name="alignment">
 
@@ -87,6 +88,18 @@ Native style tests ensure that supported native elements and utilities look the 
 Size tests ensure that both the `size` attribute and `.wa-size-[s|m|l]` classes have identical results for components that support them. Developers should be able to use both of these interchangeably on components to get the intended size.
 
 {% include 'visual-tests/size.njk' %}
+
+</wa-tab-panel>
+
+</wa-tab-group>
+
+<wa-tab-panel name="nesting">
+
+## Nesting
+
+TODO
+
+{% include 'visual-tests/nesting.njk' %}
 
 </wa-tab-panel>
 
